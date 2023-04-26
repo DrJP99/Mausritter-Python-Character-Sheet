@@ -1,0 +1,571 @@
+{
+	"item": {
+		"Torches": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Lantern": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 50
+		},
+		"Electric Lantern": {
+			"max_durability": 6,
+			"durability": 0,
+			"cost": 100
+		},
+		"Rations": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5
+		},
+		"Barrel of ale": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Bat teeth": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Bedroll": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Bellows": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Blank Book": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 300
+		},
+		"Reading Book": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 600
+		},
+		"Bottle": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 1
+		},
+		"Bottle of milk": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5
+		},
+		"Bucket": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5
+		},
+		"Caltrops": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Chalk": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 1
+		},
+		"Chisel": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5
+		},
+		"Cookpots": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Crowbar": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Drill": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Flask of coffee": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5
+		},
+		"Glue": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5
+		},
+		"Grease": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5
+		},
+		"Hammer": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Holy symbol": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 25
+		},
+		"Horn": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Hourglass": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 300
+		},
+		"Lockpicks": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 100
+		},
+		"Metal file": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5
+		},
+		"Mirror": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 200
+		},
+		"Musical instrument": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 200
+		},
+		"Net": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Padlock and key (small)": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20
+		},
+		"Perfume": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 50
+		},
+		"Pick": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Set of loaded dice": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5
+		},
+		"Shears": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Shovel": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Tent": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 80
+		},
+		"Waterskin": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5
+		},
+		"Whistle": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5
+		},
+		"Wooden pole": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 1
+		},
+		"Wooden spikes": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 1
+		},
+		"Fishing hook": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20
+		},
+		"Incense stick": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20
+		},
+		"Lens": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 200
+		},
+		"Necklace chain": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 40
+		},
+		"Needle": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20
+		},
+		"Matches": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 80
+		},
+		"Padlock and key (large)": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 100
+		},
+		"Twine": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 40
+		},
+		"Soap": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Thread": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20
+		},
+		"Mouse trap": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 100
+		},
+		"Poison": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 100
+		},
+		"Oil": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10
+		},
+		"Batteries": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 50
+		},
+		"Wire": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20
+		},
+		"IOU": {
+			"max_durability": 0,
+			"durability": 0,
+			"cost": 20
+		},
+		"Goggles": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 30
+		},
+		"Chain": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20
+		},
+		"Dried mushrooms": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5
+		},
+		"Spore mask": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20
+		},
+		"Compass": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 50
+		},
+		"Treasure map": {
+			"max_durability": 0,
+			"durability": 0,
+			"cost": 15
+		},
+		"Sealed documents": {
+			"max_durability": 0,
+			"durability": 0,
+			"cost": 50
+		},
+		"Disguise kit": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20
+		},
+		"Jar of honey": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20
+		},
+		"Scrap of obscure book": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20
+		},
+		"Felt hat": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 50
+		}
+	},
+	"weapon": {
+		"Improvised Weapon": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 0,
+			"class": "Improvised"
+		},
+		"Stones": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 1,
+			"class": "Ammunition"
+		},
+		"Needle": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10,
+			"class": "Light"
+		},
+		"Dagger": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 10,
+			"class": "Light"
+		},
+		"Arrows": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 5,
+			"class": "Ammunition"
+		},
+		"Axe": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20,
+			"class": "Medium"
+		},
+		"Sword": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20,
+			"class": "Medium"
+		},
+		"Mace": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20,
+			"class": "Medium"
+		},
+		"Sling": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20,
+			"class": "Light Ranged"
+		},
+		"Warhammer": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 40,
+			"class": "Heavy"
+		},
+		"Spear": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 40,
+			"class": "Heavy"
+		},
+		"Hookarm": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 40,
+			"class": "Heavy"
+		},
+		"Bow": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 50,
+			"class": "Heavy Ranged"
+		},
+		"Pickaxe": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20,
+			"class": "Medium"
+		},
+		"Trashhook": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 40,
+			"class": "Heavy"
+		},
+		"Hammer": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 20,
+			"class": "Medium"
+		}
+	},
+	"magic_weapon": null,
+	"armor": {
+		"Light Armor": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 150,
+			"class": "Light",
+			"protection": 1,
+			"size_x": 2,
+			"size_y": 1
+		},
+		"Heavy Armor": {
+			"max_durability": 3,
+			"durability": 0,
+			"cost": 300,
+			"class": "Heavy",
+			"protection": 1,
+			"size_x": 1,
+			"size_y": 2
+		}
+	},
+	"spell": {
+		"Fireball": {
+			"cost": -1,
+			"effect": "Shoot a fireball up to 24\". Deal [SUM] + [DICE] damage to all creatures within 6\".",
+			"recharge": "Burn in the heart of a raging fire for three days and nights."
+		},
+		"Heal": {
+			"cost": -1,
+			"effect": "Heal [SUM] STR damage and remouved the injured Condition from a creature.",
+			"recharge": "Cut self for d6 STR damage, sprinkle the spell with the blood."
+		},
+		"Magic Missile": {
+			"cost": -1,
+			"effect": "Deal [SUM] + [DICE] damage to a creature within sight.",
+			"recharge": "Drop from a height of at least 30ft. Touch the spell within one Turn."
+		},
+		"Fear": {
+			"cost": -1,
+			"effect": "Give the Frightened Condition to [DICE] creatures.",
+			"recharge": "Receive the Frightened Condition from a hostile creature while carrying the spell."
+		},
+		"Darkness": {
+			"cost": -1,
+			"effect": "Create a [SUM] x 2\" diameter sphere of pure darkness for [DICE] Turns.",
+			"recharge": "Leave uncovered in a lightless place for three days."
+		},
+		"Restore": {
+			"cost": -1,
+			"effect": "Remove Exhausted or Frightened Condition from [DICE] + 1 creatures.",
+			"recharge": "Bury in a peaceful field or riverbank for three days."
+		},
+		"Be Understood": {
+			"cost": -1,
+			"effect": "Make your meaning clear to [DICE] creatures of another species for [DICE] Turns.",
+			"recharge": "Give away freely to a creature of another species."
+		},
+		"Ghost Beetle": {
+			"cost": -1,
+			"effect": "Create an illusory beetle that can carry 6 inventory slots for [DICE] x 6 Turns.",
+			"recharge": "Bury in a beetle graveyard for three nights."
+		},
+		"Light": {
+			"cost": -1,
+			"effect": "Force [DICE] creatures to make a WIL save or become stunned. Alternatively, create light as bright as a torch for [SUM] turns.",
+			"recharge": "Catch in the first light of sunrise and the last light of sunset for three days."
+		},
+		"Invisible Ring": {
+			"cost": -1,
+			"effect": "Creates [DICE] x 6\" ring of force. It is invisible and immovable. Last [DICE] Turns.",
+			"recharge": "Build an iron ring the same size as last cast. Pass the spell through it. Dissolces the ring."
+		},
+		"Knock": {
+			"cost": -1,
+			"effect": "Open a door or container, as if a Save were made with STR score of 10 + [DICE] x 4.",
+			"recharge": "Put in a locked box, inside a locked box, inside a locked box. Leave for three days."
+		},
+		"Grease": {
+			"cost": -1,
+			"effect": "Cover [DICE] x 6\" area in slippery, flamable grease. Creatures in the area must make a DEX save or fall prone.",
+			"recharge": "Rub all over in animal fat. Leave until it putrefies."
+		},
+		"Grow": {
+			"cost": -1,
+			"effect": "Grow a creature to [DICE] + 1 times its original size for 1 turn.",
+			"recharge": "Leave in the highest branches of a tall tree for three days."
+		},
+		"Invisibility": {
+			"cost": -1,
+			"effect": "Make a creature invisible for [DICE] Turns. Any movement reduces duration by 1 Turn.",
+			"recharge": "Go a day without opening your eyes once, while holding the spell."
+		},
+		"Catnip": {
+			"cost": -1,
+			"effect": "Turn object into an irresistable lure for cats. Lasts [DICE] Turns.",
+			"recharge": "Give a cat a gift it truly desires."
+		}
+	},
+	"purse": {
+		"pip": 0,
+		"max_pip": 250
+	},
+	"condition": {
+		"Exhausted": {
+			"clear": "After long rest",
+			"effect": ""
+		},
+		"Frightened": {
+			"clear": "After long rest",
+			"effect": "WIL saave to approach source of fear."
+		},
+		"Hungry": {
+			"clear": "After meal",
+			"effect": ""
+		},
+		"Injured": {
+			"clear": "After full rest",
+			"effect": "Disadvantage on STR & DEX saves."
+		},
+		"Drained": {
+			"clear": "After full rest",
+			"effect": "Disadvantage on WIL saves."
+		}
+	}
+}

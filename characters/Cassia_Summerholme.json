@@ -1,0 +1,71 @@
+{
+	"name": "Cassia Summerholme",
+	"str": 9,
+	"curr_str": 9,
+	"dex": 10,
+	"curr_dex": 10,
+	"wil": 5,
+	"curr_wil": 5,
+	"hp": 4,
+	"curr_hp": 4,
+	"background": "Sewer guide",
+	"inventory": {
+		"pip": 4,
+		"main": {
+			"type": "weapon",
+			"name": "Hammer",
+			"max_durability": 0,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"cost": 20,
+			"class": "Medium",
+			"hitdie": [6, 8]
+		},
+		"off": null,
+		"body_1": null,
+		"body_2": null,
+		"back_1": null,
+		"back_2": null,
+		"back_3": {
+			"type": "item",
+			"name": "Torches",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"cost": 10
+		},
+		"back_4": null,
+		"back_5": {
+			"type": "item",
+			"name": "Metal file",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"cost": 5
+		},
+		"back_6": {
+			"type": "item",
+			"name": "Rations",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"cost": 5
+		}
+	},
+	"birthsign": "Wheel",
+	"disposition": "Industrious/Unimaginative",
+	"coat": "Tan Solid",
+	"look": "Luminous eyes",
+	"grit": 0,
+	"level": 1,
+	"xp": 0,
+	"bank": {
+		"pip": 0,
+		"items": {}
+	},
+	"gritted": []
+}

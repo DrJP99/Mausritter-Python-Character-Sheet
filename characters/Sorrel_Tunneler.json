@@ -1,0 +1,79 @@
+{
+	"name": "Sorrel Tunneler",
+	"str": 11,
+	"curr_str": 11,
+	"dex": 10,
+	"curr_dex": 10,
+	"wil": 11,
+	"curr_wil": 11,
+	"hp": 5,
+	"curr_hp": 5,
+	"background": "Trap thief",
+	"inventory": {
+		"pip": 3,
+		"main": {
+			"type": "weapon",
+			"name": "Mace",
+			"max_durability": 0,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"cost": 20,
+			"class": "Medium",
+			"hitdie": [6, 8]
+		},
+		"off": null,
+		"body_1": null,
+		"body_2": null,
+		"back_1": null,
+		"back_2": {
+			"type": "item",
+			"name": "Block of cheese",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"cost": 0
+		},
+		"back_3": {
+			"type": "item",
+			"name": "Torches",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"cost": 10
+		},
+		"back_4": null,
+		"back_5": {
+			"type": "item",
+			"name": "Glue",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"cost": 5
+		},
+		"back_6": {
+			"type": "item",
+			"name": "Rations",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"cost": 5
+		}
+	},
+	"birthsign": "Star",
+	"disposition": "Brave/Reckless",
+	"coat": "White Banded",
+	"look": "Whip-like tail",
+	"grit": 0,
+	"level": 1,
+	"xp": 0,
+	"bank": {
+		"pip": 0,
+		"items": {}
+	},
+	"gritted": []
+}

@@ -1,0 +1,88 @@
+{
+	"name": "Elmer Black",
+	"str": 10,
+	"curr_str": 10,
+	"dex": 11,
+	"curr_dex": 11,
+	"wil": 9,
+	"curr_wil": 9,
+	"hp": 6,
+	"curr_hp": 6,
+	"background": "Librarian",
+	"inventory": {
+		"pip": 5,
+		"main": {
+			"type": "weapon",
+			"name": "Sword",
+			"class": "Medium",
+			"cost": 20,
+			"hitdie": [6, 8],
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1
+		},
+		"off": null,
+		"body_1": {
+			"type": "weapon",
+			"name": "Warhammer",
+			"class": "Heavy",
+			"cost": 40,
+			"hitdie": 10,
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 2
+		},
+		"body_2": null,
+		"back_1": null,
+		"back_2": {
+			"type": "item",
+			"name": "Quill & ink",
+			"cost": "0",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1
+		},
+		"back_3": {
+			"type": "item",
+			"name": "Rations",
+			"cost": "5",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1
+		},
+		"back_4": null,
+		"back_5": {
+			"type": "item",
+			"name": "Scrap of obscure book",
+			"cost": "0",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1
+		},
+		"back_6": {
+			"type": "item",
+			"name": "Torches",
+			"cost": "10",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1
+		}
+	},
+	"birthsign": "Star",
+	"disposition": "Brave/Reckless",
+	"coat": "Blue Marbled",
+	"look": "Fashionable clothes",
+	"grit": 0,
+	"level": 1,
+	"xp": 0,
+	"bank": {
+		"pip": 0,
+		"items": {}
+	}
+}

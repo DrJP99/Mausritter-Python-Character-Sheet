@@ -1,0 +1,71 @@
+{
+	"name": "Elmer White",
+	"str": 8,
+	"curr_str": 8,
+	"dex": 11,
+	"curr_dex": 11,
+	"wil": 7,
+	"curr_wil": 7,
+	"hp": 4,
+	"curr_hp": 4,
+	"background": "Prison guard",
+	"inventory": {
+		"pip": 5,
+		"main": {
+			"type": "weapon",
+			"name": "Bow",
+			"max_durability": 0,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 2,
+			"cost": 40,
+			"class": "Heavy Ranged",
+			"hitdie": 8
+		},
+		"off": null,
+		"body_1": null,
+		"body_2": null,
+		"back_1": null,
+		"back_2": null,
+		"back_3": {
+			"type": "item",
+			"name": "Torches",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"cost": 10
+		},
+		"back_4": null,
+		"back_5": {
+			"type": "item",
+			"name": "Chain",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"cost": 0
+		},
+		"back_6": {
+			"type": "item",
+			"name": "Rations",
+			"max_durability": 3,
+			"durability": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"cost": 5
+		}
+	},
+	"birthsign": "Wheel",
+	"disposition": "Industrious/Unimaginative",
+	"coat": "Black Solid",
+	"look": "Patched clothes",
+	"grit": 0,
+	"level": 1,
+	"xp": 0,
+	"bank": {
+		"pip": 0,
+		"items": {}
+	},
+	"gritted": []
+}
