@@ -24,6 +24,10 @@ class Item:
         if self.durability < self.max_durability:
             self.durability += n
     
+    def decrease_durability(self, n = 1):
+        if self.durability > 0:
+            self.durability -= n
+    
     def fix(self):
         self.durability = 0
     
@@ -145,7 +149,10 @@ class Weapon(Item):
         if (type(self.hitdie) == list):
             json["hitdie"] = [hitdie.value for hitdie in self.hitdie]
         else:
-            json["hitdie"] = self.hitdie.value
+            if (self.hitdie == None):
+                json["hitdie"] = None
+            else:
+                json["hitdie"] = self.hitdie.value
         return json
 
 class Magic_Weapon(Weapon):

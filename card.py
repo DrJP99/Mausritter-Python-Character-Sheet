@@ -5,6 +5,9 @@ from condition import *
 from snap_area import *
 from cursor import grab_hand_cursor
 
+
+
+
 class Card:
     def __init__(self, title = ""):
         self.x = 0
@@ -26,6 +29,20 @@ class Card:
         self.type = "generic"
         self.close_rec = None
         self.window_rec = None
+
+        self.allowed_area_x = 590
+        self.allowed_area_y = 840
+
+        self.title_font = pygame.font.Font("./fonts/Brokenscript OT Cond Bold.ttf", 13)
+        self.class_font = pygame.font.SysFont("Bahnschrift", 12)
+        self.star_font = pygame.font.SysFont("Simsun", 12)
+
+        self.max_purse_font = pygame.font.SysFont("Bahnschrift", 15)
+        self.purse_font = pygame.font.Font("fonts\CaveatBrush-Regular.ttf", 15)
+
+        self.description_font = pygame.font.SysFont("Bahnschrift", 9, italic=True)
+        self.clear_font = pygame.font.SysFont("Bahnschrift", 9)
+        self.clear_title_font = pygame.font.SysFont("Bahnschrift", 10, bold=True)
 
     def __str__(self):
         return f"{self.title}"
@@ -103,14 +120,24 @@ class Card:
         pygame.draw.rect(screen, (255, 255, 255), (self.x, self.y, self.size_x, self.size_y))
         pygame.draw.rect(screen, (0, 0, 0), (self.x, self.y, self.size_x, self.size_y), 1)
         pygame.draw.line(screen, (0, 0, 0), (self.x, self.y + 27), (self.x + self.size_x - 1, self.y + 27))
-        font = pygame.font.Font("./fonts/Brokenscript OT Cond Bold.ttf", 13)
-        title = self.title_too_long(self.size_x - 10, font)
+
+        offset = 0
+        if (self.type == "spell"):
+            symbol_text = self.star_font.render("★", True, (0,0,0))
+            symbol_rect = symbol_text.get_rect()
+            symbol_rect.topleft = (self.x + 5, self.y + 6)
+            screen.blit(symbol_text, symbol_rect)
+            offset = symbol_rect.width + 2
+        
+        title = self.title_too_long(self.size_x - 10 - offset, self.title_font)
+            
         # if (len(self.title) > 15):
         #     title = self.title[:15] + "..."
-        text = font.render(title, 1, (0, 0, 0))
+        text = self.title_font.render(title, 1, (0, 0, 0))
         rect = pygame.Rect(self.x + 5, self.y + 5, self.size_x - 10, 20)
         rect.update(self.x + 5, self.y + 5, self.size_x - 10, 20)
-        screen.blit(text, (self.x + 5, self.y + 5))
+        screen.blit(text, (self.x + 5 + offset, self.y + 5))
+
     
     def draw_ui_window(self, screen):
         pause_back = pygame.Surface((screen.get_width(), screen.get_height()))
@@ -192,6 +219,15 @@ class Card:
         if (self.dragging):
                 self.x = pygame.mouse.get_pos()[0] - self.start_d_x
                 self.y = pygame.mouse.get_pos()[1] - self.start_d_y
+
+                if self.x < 0:
+                    self.x = 0
+                if self.y < 0:  
+                    self.y = 0
+                if self.x + self.size_x > self.allowed_area_x:
+                    self.x = self.allowed_area_x - self.size_x
+                if self.y + self.size_y > self.allowed_area_y:
+                    self.y = self.allowed_area_y - self.size_y
                 # pygame.mouse.set_cursor((16, 16), (0, 0), *grab_hand_cursor)
                 # print(f"x: {self.x}, y: {self.y}")
 
@@ -308,19 +344,31 @@ class Item_Card(Card):
         self.durability = 0
 
     def click_durability(self, pos):
+        for block in self.blocked:
+            if (block.collidepoint(pos)):
+                return False
         if (self.durability_rect.collidepoint(pos)):
             # uses = math.floor((pos[0] - self.x - 10) / 15) + (math.floor((pos[1] - self.y - 40) / 15) * 3) + 1
             # print(f"Uses: {uses}")
             # if uses <= self.durability:
             #     self.durability = uses
-            if (self.durability == self.max_durability):
-                self.item.fix()
-                self.durability = 0
+            if (self.durability < self.max_durability):
+                self.durability += 1
+                self.item.increase_durability()
+                # print(f"Durability: {self.durability}")
                 return True
-            self.durability += 1
-            self.item.increase_durability()
-            # print(f"Durability: {self.durability}")
-            return True
+        return False
+
+    def right_click_durability(self, pos):
+        for block in self.blocked:
+            if (block.collidepoint(pos)):
+                return False
+        if (self.durability_rect.collidepoint(pos)):
+            if (self.durability > 0):
+                self.durability -= 1
+                self.item.decrease_durability()
+                # print(f"Durability: {self.durability}")
+                return True
         return False
 
     def draw(self, screen):
@@ -397,15 +445,14 @@ class Weapon_Card(Item_Card):
     
     def draw(self, screen):
         super().draw(screen)
-        class_font = pygame.font.SysFont("Bahnschrift", 12)
         hitdice_string = f"{self.hitdie}"
-        text = class_font.render(hitdice_string, 1, (0, 0, 0))
-        text_h = class_font.size(hitdice_string)[1]
+        text = self.class_font.render(hitdice_string, 1, (0, 0, 0))
+        text_h = self.class_font.size(hitdice_string)[1]
         screen.blit(text, (self.x + 5, self.y + self.size_y - 5 - text_h * 2))
 
         class_string = f"{self.weapon_class}"
-        text = class_font.render(class_string, 1, (0, 0, 0))
-        text_h = class_font.size(class_string)[1]
+        text = self.class_font.render(class_string, 1, (0, 0, 0))
+        text_h = self.class_font.size(class_string)[1]
         screen.blit(text, (self.x + 5, self.y + self.size_y - 5 - text_h))
     
     def draw_ui_window(self, screen):
@@ -489,15 +536,14 @@ class Armor_Card(Item_Card):
     
     def draw(self, screen):
         super().draw(screen)
-        class_font = pygame.font.SysFont("Bahnschrift", 12)
         armor_class_string = f"{self.armor_class}"
-        text = class_font.render(armor_class_string, 1, (0, 0, 0))
-        text_h = class_font.size(armor_class_string)[1]
+        text = self.class_font.render(armor_class_string, 1, (0, 0, 0))
+        text_h = self.class_font.size(armor_class_string)[1]
         screen.blit(text, (self.x + 5, self.y + self.size_y - 5 - text_h))
 
         armor_protection = f"Protection: {self.defence}"
-        text = class_font.render(armor_protection, 1, (0, 0, 0))
-        text_h = class_font.size(armor_protection)[1]
+        text = self.class_font.render(armor_protection, 1, (0, 0, 0))
+        text_h = self.class_font.size(armor_protection)[1]
         screen.blit(text, (self.x + 5, self.y + self.size_y - 5 - text_h * 2))
     
     def draw_ui_window(self, screen):
@@ -546,15 +592,13 @@ class Purse_Card(Item_Card):
         super().draw(screen)
         pygame.draw.rect(screen, (0, 0, 0), (self.x + 5, self.y + self.size_y - 33, self.size_x - 10, 28), 1)
 
-        class_font = pygame.font.SysFont("Bahnschrift", 15)
         max_pip_str = f"/ {self.max_pip}"
-        text = class_font.render(max_pip_str, 1, (0, 0, 0))
+        text = self.max_purse_font.render(max_pip_str, 1, (0, 0, 0))
         text_rect = text.get_rect()
         text_rect.bottomright = (self.x + self.size_x - 10, self.y + self.size_y - 10)
         screen.blit(text, text_rect)
 
-        font = pygame.font.Font("fonts\CaveatBrush-Regular.ttf", 15)
-        curr_text = font.render(f"{self.curr_pip}", 1, (0, 0, 0))
+        curr_text = self.purse_font.render(f"{self.curr_pip}", 1, (0, 0, 0))
         curr_text_rect = curr_text.get_rect()
         curr_text_rect.bottomright = (self.x + self.size_x - 13 - text_rect.width, self.y + self.size_y - 9)
         screen.blit(curr_text, curr_text_rect)
@@ -633,24 +677,21 @@ class Condition_Card(Card):
     
     def draw(self, screen):
         super().draw(screen)
-        class_font = pygame.font.SysFont("Bahnschrift", 9, italic=True)
         description_string = f"{self.description}"
         # text = class_font.render(description_string, 1, (0, 0, 0))
         # text_h = class_font.size(description_string)[1]
         # screen.blit(text, (self.x + 5, self.y + self.size_y - 5 - text_h))
-        text_wrap(description_string, class_font, (0, 0, 0), self.x + 5, self.y + 32, screen, self.size_x - 10)
+        text_wrap(description_string, self.description_font, (0, 0, 0), self.x + 5, self.y + 32, screen, self.size_x - 10)
 
-        class_font = pygame.font.SysFont("Bahnschrift", 9)
         clear_string = f"{self.clear}"
-        text = class_font.render(clear_string, 1, (0, 0, 0))
-        text_h = class_font.size(clear_string)[1]
+        text = self.clear_font.render(clear_string, 1, (0, 0, 0))
+        text_h = self.clear_font.size(clear_string)[1]
         text_rect = text.get_rect()
         text_rect.bottomleft = (self.x + 5, self.y + self.size_y - 5)
         screen.blit(text, text_rect)
 
-        clear_font = pygame.font.SysFont("Bahnschrift", 10, bold=True)
         clear_str = "Clear:"
-        clear_text = clear_font.render(clear_str, 1, (0, 0, 0))
+        clear_text = self.clear_title_font.render(clear_str, 1, (0, 0, 0))
         screen.blit(clear_text, (self.x + 5, self.y + self.size_y - 5 - 2 * text_rect.height))
 
     def draw_ui_window(self, screen):

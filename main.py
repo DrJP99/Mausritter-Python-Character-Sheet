@@ -1459,7 +1459,7 @@ def select_file():
 
     filename = filedialog.askopenfilename(
         title='Open a file',
-        initialdir="\characters",
+        initialdir="characters/",
         filetypes=filetypes
     )
 
@@ -1520,7 +1520,7 @@ def main():
 
     color = (235, 235, 235)
     
-    FPS = 60
+    FPS = 90
     clock = pygame.time.Clock()
 
     my_char.print()
@@ -1528,9 +1528,12 @@ def main():
     pygame.display.update()
     opened_card = None
     while running:  
-        clock.tick(60)
+        clock.tick(FPS)
 
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+               running = False
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     if opened_card != None:
@@ -1543,11 +1546,17 @@ def main():
                     my_char.save_json()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
+                for card in all_cards:
+                    if (card.get_type() != "condition" and not paused):
+                        if event.button == 1:
+                            card.click_durability(pygame.mouse.get_pos())
+                        if event.button == 3:
+                            card.right_click_durability(pygame.mouse.get_pos())
                 if event.button == 1:
                     # print("Left click")
-                    for card in all_cards:
-                        if (card.get_type() != "condition"):
-                            card.click_durability(pygame.mouse.get_pos())
+                    for button in buttons:
+                        if (button.pressed(pygame.mouse.get_pos(), surface) and not paused):
+                            button_func(button.get_label())
                     if opened_card != None:
                         if pygame.Rect.collidepoint(opened_card.get_close_rec(), pygame.mouse.get_pos()):
                             opened_card.close_ui_window()
@@ -1572,8 +1581,6 @@ def main():
             for button in buttons:
                 button.draw(surface)
                 button.hover(pygame.mouse.get_pos(), surface)
-                if (pygame.mouse.get_pressed()[0] and button.pressed(pygame.mouse.get_pos(), surface)):
-                    button_func(button.get_label())
 
             for area in snap_areas:
                 if (area.get_title() == "Delete"):
