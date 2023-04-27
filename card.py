@@ -35,7 +35,7 @@ class Card:
 
         self.title_font = pygame.font.Font("./fonts/Brokenscript OT Cond Bold.ttf", 13)
         self.class_font = pygame.font.SysFont("Bahnschrift", 12)
-        self.star_font = pygame.font.SysFont("Simsun", 12)
+        self.star_font = pygame.font.SysFont("Simsun", 12, bold=True)
 
         self.max_purse_font = pygame.font.SysFont("Bahnschrift", 15)
         self.purse_font = pygame.font.Font("fonts\CaveatBrush-Regular.ttf", 15)

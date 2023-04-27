@@ -1,6 +1,8 @@
 import json
 from inventory import *
 import pygame
+from pygame.locals import *
+from my_enums import Dice
 
 class Character:
     def __init__(self, name = "", background = "", birthsign = "", coat = "", look = "", str = 0, dex = 0, wil = 0, hp = 0, pips = 0, level = 1, xp = 0, grit = 0, disposition = ""):
@@ -24,6 +26,24 @@ class Character:
         self.grit = grit
         self.inventory = PC_Inventory(pips)
         self.grit_conditions = []
+
+        bh = 46
+        bw = 30
+
+        start_y = 201
+        start_x = 548
+        offset = 0
+
+        self.str_button = Attribute_Buttons(start_x, start_y + offset, bw, bh, "str")
+        offset += bh -1
+        self.dex_button = Attribute_Buttons(start_x, start_y + offset, bw, bh, "dex")
+        offset += bh
+        self.wil_button = Attribute_Buttons(start_x, start_y + offset, bw, bh, "wil")
+        offset += bh + 15
+        self.hp_button = Attribute_Buttons(start_x, start_y + offset, bw, bh, "hp")
+
+        self.att_buttons = [self.str_button, self.dex_button, self.wil_button, self.hp_button]
+
     
     def print(self):
         print("Name: " + self.name)
@@ -151,6 +171,37 @@ class Character:
     def set_inventory(self, inventory):
         self.inventory = inventory
 
+    def increase_attribute(self, attribute, n = 1):
+        if attribute == "str":
+            if self.curr_str < self.str:
+                self.curr_str += n
+        elif attribute == "dex":
+            if self.curr_dex < self.dex:
+                self.curr_dex += n
+        elif attribute == "wil":
+            if self.curr_wil < self.wil:
+                self.curr_wil += n
+        elif attribute == "hp":
+            if self.curr_hp < self.hp:
+                self.curr_hp += n
+    
+    def decrease_attribute(self, attribute, n = 1):
+        if attribute == "str":
+            if self.curr_str > 0:
+                self.curr_str -= n
+        elif attribute == "dex":
+            if self.curr_dex > 0:
+                self.curr_dex -= n
+        elif attribute == "wil":
+            if self.curr_wil > 0:
+                self.curr_wil -= n
+        elif attribute == "hp":
+            if self.curr_hp > 0:
+                self.curr_hp -= n
+    
+    def get_att_buttons(self):
+        return self.att_buttons
+
     def load_json(self, json):
         self.name = json["name"]
         self.background = json["background"]
@@ -204,7 +255,7 @@ class Character:
         path = f"characters/{fix_name}.json"
 
         print("saving...")
-        self.print()
+        # self.print()
         self.save_file(json, path)
 
     def load_file(self, path):
@@ -234,6 +285,64 @@ class Character:
         for condition in json:
             my_grit.append(Condition().load_json(condition))
         return my_grit
+
+    def click_buttons(self, pos):
+        for button in self.att_buttons:
+            if button.click_increase(pos):
+                self.increase_attribute(button.attribute)
+            elif button.click_decrease(pos):
+                self.decrease_attribute(button.attribute)
+    
+    def can_level_up(self):
+        if (self.level == 1):
+            if self.xp < 1000:
+                return False
+        elif (self.level == 2):
+            if self.xp < 3000:
+                return False
+        elif (self.level == 3):
+            if self.xp < 6000:
+                return False
+        elif (self.level >= 4):
+            if self.xp < 6000 + (self.level - 3) * 5000:
+                return False
+        return True
+
+    def level_up(self, roll_str = 1, roll_dex = 1, roll_wil = 1, roll_hp = 1):
+        if self.can_level_up():
+            self.level += 1
+            if roll_str > self.str:
+                self.str += 1
+            if roll_dex > self.dex:
+                self.dex += 1
+            if roll_wil > self.wil:
+                self.wil += 1
+
+            if roll_hp > self.hp:
+                self.hp = roll_hp
+            else:
+                self.hp += 1
+    
+    def get_grit_by_level(level):
+        match level:
+            case 1:
+                return 0
+            case 2:
+                return 1
+            case 3:
+                return 2
+            case 4:
+                return 2
+            case _:
+                return 3
+    
+    def get_hitdie_by_level(level):
+        if level >= 4:
+            n = 4
+        else:
+            n = level
+        
+        return n, Dice.d6
 
     def draw(self, screen):
         font = pygame.font.Font("./fonts/Brokenscript OT Cond Bold.ttf", 25)
@@ -275,13 +384,13 @@ class Character:
         screen.blit(text, text_rect)
 
         text = font.render(f"{self.curr_str}", 1, (50, 50, 50))
-        screen.blit(text, (520, 206))
+        screen.blit(text, (510, 206))
 
         text = font.render(f"{self.curr_dex}", 1, (50, 50, 50))
-        screen.blit(text, (520, 251))
+        screen.blit(text, (510, 251))
 
         text = font.render(f"{self.curr_wil}", 1, (50, 50, 50))
-        screen.blit(text, (520, 296))
+        screen.blit(text, (510, 296))
 
         text = font.render(f"{self.hp}", 1, (0, 0, 0))
         text_rect = text.get_rect()
@@ -289,7 +398,7 @@ class Character:
         screen.blit(text, text_rect)
 
         text = font.render(f"{self.curr_hp}", 1, (50, 50, 50))
-        screen.blit(text, (520, 358))
+        screen.blit(text, (510, 358))
 
         font = pygame.font.Font("fonts\CaveatBrush-Regular.ttf", 19)
         text = font.render(f"{self.inventory.pip}", 1, (0, 0, 0))
@@ -308,3 +417,48 @@ class Character:
         text_rect = text.get_rect()
         text_rect.topright = (100, 755)
         screen.blit(text, text_rect)
+
+        for button in self.att_buttons:
+            button.draw(screen)
+
+
+class Attribute_Buttons:
+    def __init__(self, x, y, size_x, size_y, attribute):
+        self.x = x
+        self.y = y
+        self.size_x = size_x
+        self.size_y = size_y
+
+        self.increase_rect = pygame.Rect(x, y, size_x, size_y / 2)
+        self.decrease_rect = pygame.Rect(x, y + size_y / 2, size_x, size_y / 2)
+
+        self.attribute = attribute
+
+        self.font = pygame.font.SysFont("Bahnschrift", 20)
+    
+    def click_increase(self, pos):
+        if self.increase_rect.collidepoint(pos):
+            return True
+        return False
+
+    def click_decrease(self, pos):
+        if self.decrease_rect.collidepoint(pos):
+            return True
+        return False
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, (255, 255, 255), self.increase_rect)
+        pygame.draw.rect(screen, (255, 255, 255), self.decrease_rect)
+
+        pygame.draw.rect(screen, (0, 0, 0), self.increase_rect, 2)
+        pygame.draw.rect(screen, (0, 0, 0), self.decrease_rect, 2)
+
+        plus_text = self.font.render("+", 1, (0, 100, 0))
+        plus_text_rect = plus_text.get_rect()
+        plus_text_rect.center = (self.x + self.size_x / 2, self.y + self.size_y / 4)
+        screen.blit(plus_text, plus_text_rect)
+
+        minus_text = self.font.render("-", 1, (150, 10, 10))
+        minus_text_rect = minus_text.get_rect()
+        minus_text_rect.center = (self.x + self.size_x / 2, self.y + self.size_y * 3 / 4)
+        screen.blit(minus_text, minus_text_rect)

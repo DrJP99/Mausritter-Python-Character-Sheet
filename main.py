@@ -1523,7 +1523,7 @@ def main():
     FPS = 90
     clock = pygame.time.Clock()
 
-    my_char.print()
+    # my_char.print()
 
     pygame.display.update()
     opened_card = None
@@ -1541,7 +1541,8 @@ def main():
                         opened_card = None
                         paused = False
                     else:
-                        running = False
+                        # running = False
+                        pass
                 if event.key == pygame.K_s:
                     my_char.save_json()
 
@@ -1554,9 +1555,13 @@ def main():
                             card.right_click_durability(pygame.mouse.get_pos())
                 if event.button == 1:
                     # print("Left click")
-                    for button in buttons:
-                        if (button.pressed(pygame.mouse.get_pos(), surface) and not paused):
-                            button_func(button.get_label())
+                    if not paused:
+                        for button in buttons:
+                            if (button.pressed(pygame.mouse.get_pos(), surface)):
+                                button_func(button.get_label())
+                        
+                        my_char.click_buttons(pygame.mouse.get_pos())
+
                     if opened_card != None:
                         if pygame.Rect.collidepoint(opened_card.get_close_rec(), pygame.mouse.get_pos()):
                             opened_card.close_ui_window()
