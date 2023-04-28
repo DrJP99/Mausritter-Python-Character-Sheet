@@ -1454,6 +1454,13 @@ def button_func(button):
         case "New Char":
             new_character_gui()
 
+def draw_pause_bg(screen):
+    pause_back = pygame.Surface((screen.get_width(), screen.get_height()))
+    pause_back.set_alpha(75)
+    pause_back.fill((225, 225, 225))
+    screen.blit(pause_back, (0, 0))
+
+
 def select_file():
     filetypes = [("Json", '*.json')]
 
@@ -1527,6 +1534,7 @@ def main():
 
     pygame.display.update()
     opened_card = None
+    editing_xp = False
     while running:  
         clock.tick(FPS)
 
@@ -1540,11 +1548,20 @@ def main():
                         opened_card.close_ui_window()
                         opened_card = None
                         paused = False
+                    elif editing_xp:
+                        paused = False
+                        editing_xp = False
                     else:
                         # running = False
                         pass
+                my_char.edit_xp_box.write(event)
                 if event.key == pygame.K_s:
                     my_char.save_json()
+                
+                if event.key == pygame.K_RETURN:
+                    if editing_xp:
+                        my_char.increase_xp(my_char.edit_xp_box.get_value())
+                        my_char.edit_xp_box.set_value("0")
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 for card in all_cards:
@@ -1556,6 +1573,12 @@ def main():
                 if event.button == 1:
                     # print("Left click")
                     if not paused:
+                        if (my_char.edit_button.pressed(pygame.mouse.get_pos(), surface)):
+                            paused = True
+                            editing_xp = True
+                            draw_pause_bg(surface)
+                            my_char.edit_xp_ui_window(surface)
+
                         for button in buttons:
                             if (button.pressed(pygame.mouse.get_pos(), surface)):
                                 button_func(button.get_label())
@@ -1567,6 +1590,19 @@ def main():
                             opened_card.close_ui_window()
                             opened_card = None
                             paused = False
+                    if editing_xp:
+                        if my_char.edit_xp_box.click(pygame.mouse.get_pos()):
+                            my_char.edit_xp_box.set_value("")
+                        if my_char.decrease_btn.pressed(pygame.mouse.get_pos(), surface):
+                            my_char.increase_xp(0 - my_char.edit_xp_box.get_value())
+                            my_char.edit_xp_box.set_value("0")
+                        if my_char.increase_btn.pressed(pygame.mouse.get_pos(), surface):
+                            my_char.increase_xp(my_char.edit_xp_box.get_value())
+                            my_char.edit_xp_box.set_value("0")
+
+                        if pygame.Rect.collidepoint(my_char.get_close_rec(), pygame.mouse.get_pos()):
+                            paused = False
+                            editing_xp = False
                 if event.button == 3:
                     for cards in reversed(all_cards):
                         if (cards.check_inside(*pygame.mouse.get_pos()) and opened_card == None):
@@ -1575,7 +1611,8 @@ def main():
                             cards.draw_ui_window(surface)
 
 
-
+        if (editing_xp):
+            my_char.edit_xp_ui_window(surface)
 
         if (not paused):
                     

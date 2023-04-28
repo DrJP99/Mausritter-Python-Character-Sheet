@@ -3,6 +3,7 @@ from inventory import *
 import pygame
 from pygame.locals import *
 from my_enums import Dice
+from button import My_Button
 
 class Character:
     def __init__(self, name = "", background = "", birthsign = "", coat = "", look = "", str = 0, dex = 0, wil = 0, hp = 0, pips = 0, level = 1, xp = 0, grit = 0, disposition = ""):
@@ -43,6 +44,11 @@ class Character:
         self.hp_button = Attribute_Buttons(start_x, start_y + offset, bw, bh, "hp")
 
         self.att_buttons = [self.str_button, self.dex_button, self.wil_button, self.hp_button]
+
+        self.edit_button = My_Button(74, 790, 50, 25, "Edit")
+        self.close_rec = None
+
+        self.edit_xp_box = Text_Box(74, 790, 50, 25, f"0")
 
     
     def print(self):
@@ -163,7 +169,10 @@ class Character:
         self.xp = xp
     
     def increase_xp(self, xp):
-        self.xp += xp
+        if (self.xp + xp) <= 0:
+            self.xp = 0
+        else:
+            self.xp += xp
 
     def set_grit(self, grit):
         self.grit = grit
@@ -420,6 +429,48 @@ class Character:
 
         for button in self.att_buttons:
             button.draw(screen)
+        
+        self.edit_button.draw(screen)
+    
+    def get_close_rec(self):
+        return self.close_rec
+
+    def edit_xp_ui_window(self, screen):
+        self.window_rec = pygame.Rect(screen.get_width() / 2 - 200, screen.get_height() / 2 - 150, 400, 200)
+        pygame.draw.rect(screen, (255, 255, 255), self.window_rec)
+        pygame.draw.rect(screen, (0, 0, 0), self.window_rec, 1)
+
+        self.close_rec = pygame.Rect( self.window_rec.x + self.window_rec.width - 35, self.window_rec.y + 10, 25, 25)
+        pygame.draw.rect(screen, (255, 0, 0), self.close_rec)
+        
+        title_font = pygame.font.Font("./fonts/Brokenscript OT Cond Bold.ttf", 25)
+        title_text = title_font.render(f"Edit XP points", 1, (0, 0, 0))
+        screen.blit(title_text, (self.window_rec.width / 2 + self.window_rec.x - title_text.get_width() / 2, self.window_rec.y + 10))
+
+        title_rect = title_text.get_rect()
+        pygame.draw.line(screen, (0, 0, 0), (self.window_rec.x, self.window_rec.y + title_rect.y + title_rect.height + 15), (self.window_rec.x + self.window_rec.width - 1, self.window_rec.y + title_rect.y + title_rect.height + 15), 1)
+
+        curr_font = pygame.font.SysFont("Bahnschrift", 20)
+
+        curr_text = curr_font.render(f"Current XP: {self.xp}", 1, (0, 0, 0))
+        curr_text_rect = curr_text.get_rect()
+        curr_text_rect.topleft = (self.window_rec.x + self.window_rec.width / 2 - curr_text_rect.width/2, self.window_rec.y + title_rect.y + title_rect.height + 25)
+        screen.blit(curr_text, curr_text_rect)
+
+        self.edit_xp_box.set_size(self.window_rec.width / 2 - 10, self.edit_xp_box.size_y)
+        self.edit_xp_box.set_pos(self.window_rec.x + self.window_rec.width / 2 - self.edit_xp_box.size_x / 2, self.window_rec.y + self.window_rec.height / 2)
+        self.edit_xp_box.draw(screen)
+
+        self.decrease_btn = My_Button(self.edit_xp_box.x, self.edit_xp_box.y + self.edit_xp_box.size_y + 10, self.edit_xp_box.size_x / 2 - 5, 30, "Remove", text_color=(150, 10, 10))
+        self.decrease_btn.draw(screen)
+
+        self.increase_btn = My_Button(self.edit_xp_box.x + self.edit_xp_box.size_x / 2 + 5, self.edit_xp_box.y + self.edit_xp_box.size_y + 10, self.edit_xp_box.size_x / 2 - 5, 30, "Add", text_color=(0, 100, 0))
+        self.increase_btn.draw(screen)
+
+
+    def close_edit_xp_ui(self):
+        self.close_rec = None
+
 
 
 class Attribute_Buttons:
@@ -462,3 +513,71 @@ class Attribute_Buttons:
         minus_text_rect = minus_text.get_rect()
         minus_text_rect.center = (self.x + self.size_x / 2, self.y + self.size_y * 3 / 4)
         screen.blit(minus_text, minus_text_rect)
+
+class Text_Box:
+    def __init__(self, x, y, size_x, size_y, text):
+        self.x = x
+        self.y = y
+        self.size_x = size_x
+        self.size_y = size_y
+
+        self.rect = pygame.Rect(x, y, size_x, size_y)
+
+        self.text = text
+
+        self.font = pygame.font.SysFont("Bahnschrift", 20)
+
+        self.active = False
+
+    def get_rec(self):
+        return self.rect
+    
+    def get_active(self):
+        return self.active
+
+    def click(self, pos):
+        if self.rect.collidepoint(pos):
+            self.active = True
+            return True
+        else:
+            self.active = False
+            return False
+    
+    def write(self, event):
+        if self.active:
+            if event.key == pygame.K_BACKSPACE:
+                self.text = self.text[:-1]
+            elif event.unicode.isdigit():
+                if len(self.text) < 10:
+                    self.text += event.unicode
+    
+    def get_value(self):
+        return int(self.text)
+
+    def set_value(self, value):
+        self.text = str(value)
+
+    def set_size(self, size_x, size_y):
+        self.size_x = size_x
+        self.size_y = size_y
+        self.rect = pygame.Rect(self.x, self.y, self.size_x, self.size_y)
+
+    def set_pos(self, x, y):
+        self.x = x
+        self.y = y
+        self.rect = pygame.Rect(x, y, self.size_x, self.size_y)
+
+    def draw(self, screen):
+        active_color = (44, 46, 53)
+        inactive_color = (0, 0, 0)
+        pygame.draw.rect(screen, (255, 255, 255), self.rect)
+        if self.active:
+            color = active_color
+        else:
+            color = inactive_color
+
+        pygame.draw.rect(screen, color, self.rect, 2)
+        text = self.font.render(self.text, 1, color)
+        text_rect = text.get_rect()
+        text_rect.center = (self.x + self.size_x / 2, self.y + self.size_y / 2)
+        screen.blit(text, text_rect)

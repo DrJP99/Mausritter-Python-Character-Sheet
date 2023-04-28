@@ -1,7 +1,7 @@
 import pygame
 
 class My_Button:
-    def __init__(self, x, y, size_x = 102, size_y = 102, label="", color = (0, 0, 0), text_color = (255, 255, 255)):
+    def __init__(self, x, y, size_x = 102, size_y = 102, label="", color = (255, 255, 255), text_color = (44, 46, 53)):
         self.x = x
         self.y = y
         self.size_x = size_x
@@ -86,7 +86,7 @@ class My_Button:
     
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, self.rect)
-        pygame.draw.rect(screen, (44, 46, 53), self.rect, 2)
+        pygame.draw.rect(screen, self.text_color, self.rect, 2)
         text = self.font.render(self.label, True, self.text_color)
         text_rect = text.get_rect()
         text_rect.center = self.rect.center
